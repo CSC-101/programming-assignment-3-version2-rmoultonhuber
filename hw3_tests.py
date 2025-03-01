@@ -1,7 +1,11 @@
+from unittest import expectedFailure
+
 import data
 import build_data
 import unittest
 
+from hw3 import population_total
+from hw3 import filter_by_state
 
 # These two values are defined to support testing below. The
 # data within these structures should not be modified. Doing
@@ -181,8 +185,33 @@ class TestCases(unittest.TestCase):
     # Part 1
     # test population_total
 
+    def test_population_total1(self):
+        inpt = full_data
+        expected = 318857056
+        result = population_total(inpt)
+        self.assertEqual(expected, result)
+
+    def test_population_total2(self):
+        inpt = full_data
+        expected_fail = 1000
+        result = population_total(inpt)
+        self.assertNotEqual(expected_fail, result)
+
     # Part 2
     # test filter_by_state
+    def test_filter_by_state1(self):
+        inpt = full_data
+        state = 'CA'
+        expected = 58
+        result = filter_by_state(inpt,state)
+        self.assertEqual(expected,len(result))
+
+    def test_filter_by_state2(self):
+        inpt = reduced_data
+        state = 'CA'
+        expected = [reduced_data[2],reduced_data[3]]
+        result = filter_by_state(inpt, state)
+        self.assertEqual(expected,result)
 
     # Part 3
     # test population_by_education
