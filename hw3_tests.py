@@ -4,7 +4,8 @@ import data
 import build_data
 import unittest
 
-from hw3 import population_total, population_by_education, population_by_ethnicity, population_below_poverty_level
+from hw3 import population_total, population_by_education, population_by_ethnicity, population_below_poverty_level, \
+    percent_by_education, percent_by_ethnicity, percent_below_poverty_level
 from hw3 import filter_by_state
 
 # These two values are defined to support testing below. The
@@ -192,10 +193,10 @@ class TestCases(unittest.TestCase):
         self.assertEqual(expected, result)
 
     def test_population_total2(self):
-        inpt = full_data
-        expected_fail = 1000
+        inpt = reduced_data
+        expected_fail = 655813
         result = population_total(inpt)
-        self.assertNotEqual(expected_fail, result)
+        self.assertEqual(expected_fail, result)
 
     # Part 2
     # test filter_by_state
@@ -259,8 +260,47 @@ class TestCases(unittest.TestCase):
 
     # Part 4
     # test percent_by_education
+    def test_percent_by_education1(self):
+        inpt = reduced_data
+        value = "Bachelor's Degree or Higher"
+        expected = 29.7514826635
+        result = percent_by_education(inpt,value)
+        self.assertAlmostEqual(expected,result)
+
+    def test_percent_by_education2(self):
+        inpt = reduced_data
+        value = ""
+        expected = 0
+        result = percent_by_education(inpt,value)
+        self.assertEqual(expected,result)
+
     # test percent_by_ethnicity
+    def test_percent_by_ethnicity1(self):
+        inpt = reduced_data
+        value = "Two or More Races"
+        expected = 3.60071407551
+        result = percent_by_ethnicity(inpt,value)
+        self.assertAlmostEqual(expected,result)
+
+    def test_percent_by_ethnicity2(self):
+        inpt = reduced_data
+        value = ""
+        expected = 0
+        result = percent_by_ethnicity(inpt,value)
+        self.assertEqual(expected,result)
     # test percent_below_poverty_level
+    def test_percent_below_poverty_level1(self):
+        inpt = reduced_data
+        expected = 16.4241504819
+        result = percent_below_poverty_level(inpt)
+        self.assertAlmostEqual(expected,result)
+
+    def test_percent_below_poverty_level2(self):
+        inpt = reduced_data
+        value = ""
+        expected = 0
+        result = percent_by_ethnicity(inpt,value)
+        self.assertEqual(expected,result)
 
     # Part 5
     # test education_greater_than

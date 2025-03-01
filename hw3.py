@@ -58,3 +58,24 @@ def population_below_poverty_level(lst: list[CountyDemographics]) -> float:
         total = total + (county.population.get('2014 Population') * county.income.get('Persons Below Poverty Level') / 100)
 
     return float(total)
+
+# Part 4
+def percent_by_education(lst:list[CountyDemographics], value:str) -> float:
+    total = population_total(lst)
+    return (population_by_education(lst, value) / total) * 100
+
+
+def percent_by_ethnicity(lst:list[CountyDemographics], value:str) -> float:
+    total = population_total(lst)
+    return (population_by_ethnicity(lst, value) / total) * 100
+
+
+def percent_below_poverty_level(lst:list[CountyDemographics]) -> float:
+    total = population_total(lst)
+    return (population_below_poverty_level(lst) / total) * 100
+
+
+
+
+
+# Part 5
