@@ -4,7 +4,7 @@ import data
 import build_data
 import unittest
 
-from hw3 import population_total
+from hw3 import population_total, population_by_education, population_by_ethnicity, population_below_poverty_level
 from hw3 import filter_by_state
 
 # These two values are defined to support testing below. The
@@ -215,8 +215,47 @@ class TestCases(unittest.TestCase):
 
     # Part 3
     # test population_by_education
+    def test_population_by_education1(self):
+        inpt = reduced_data
+        value = "Bachelor's Degree or Higher"
+        expected = 195114.091
+        result = population_by_education(inpt, value)
+        self.assertAlmostEqual(expected,result)
+
+    def test_population_by_education2(self):
+        inpt = reduced_data
+        value = ""
+        expected = 0
+        result = population_by_education(inpt, value)
+        self.assertEqual(expected,result)
+
     # test population_by_ethnicity
+    def test_population_by_ethnicity1(self):
+        inpt = reduced_data
+        value = "Two or More Races"
+        expected = 23613.951
+        result = population_by_ethnicity(inpt, value)
+        self.assertAlmostEqual(expected,result)
+
+    def test_population_by_ethnicity2(self):
+        inpt = reduced_data
+        value = "Blue"
+        expected = 0
+        result = population_by_ethnicity(inpt, value)
+        self.assertEqual(expected,result)
+
     # test population_below_poverty_level
+    def test_population_below_poverty_level1(self):
+        inpt = reduced_data
+        expected = 107711.714
+        result = population_below_poverty_level(inpt)
+        self.assertAlmostEqual(expected,result)
+
+    def test_population_below_poverty_level2(self):
+        inpt = full_data
+        expected = 0
+        result = population_below_poverty_level(inpt)
+        self.assertNotEqual(expected,result)
 
     # Part 4
     # test percent_by_education
