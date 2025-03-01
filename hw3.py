@@ -81,6 +81,14 @@ def percent_below_poverty_level(lst:list[CountyDemographics]) -> float:
 
 
 # Part 5
+# functions will find the all the counties with a percent greater than or less than a specified threshold and add then to a new list of counties.
+# input list, string, int then Output list
+# return [], [CountyDemographics]
+# function will first determine if the value is a valid parameter in the CountyDemographics objects, if not it will return an empty list.
+# next, the function will check all the counties to see if they're greater than or less than the limit for the respective function.
+# if the county's parameter is greater than/less than the limit it will be added to a new list
+# after all counties are checked, the function will return the new list of county objects.
+
 def education_greater_than(lst:list[CountyDemographics], value:str, limit:int) -> list[CountyDemographics]:
     final_list = []
     if value == "":
@@ -104,3 +112,45 @@ def education_less_than(lst:list[CountyDemographics], value:str, limit:int) -> l
             else:
                 continue
         return final_list
+
+def ethnicity_greater_than(lst:list[CountyDemographics], value:str, limit:int) -> list[CountyDemographics]:
+    final_list = []
+    if value == "":
+        return []
+    else:
+        for county in lst:
+            if county.ethnicities[value] > limit:
+                final_list.append(county)
+            else:
+                continue
+        return final_list
+
+def ethnicity_less_than(lst:list[CountyDemographics], value:str, limit:int) -> list[CountyDemographics]:
+    final_list = []
+    if value == "":
+        return []
+    else:
+        for county in lst:
+            if county.ethnicities[value] < limit:
+                final_list.append(county)
+            else:
+                continue
+        return final_list
+
+def below_poverty_level_greater_than(lst:list[CountyDemographics],limit:int) -> list[CountyDemographics]:
+    final_list = []
+    for county in lst:
+        if county.income.get('Persons Below Poverty Level') > limit:
+            final_list.append(county)
+        else:
+            continue
+    return final_list
+
+def below_poverty_level_less_than(lst:list[CountyDemographics],limit:int) -> list[CountyDemographics]:
+    final_list = []
+    for county in lst:
+        if county.income.get('Persons Below Poverty Level') < limit:
+            final_list.append(county)
+        else:
+            continue
+    return final_list
