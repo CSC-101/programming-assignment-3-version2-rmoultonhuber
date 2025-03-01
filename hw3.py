@@ -60,6 +60,11 @@ def population_below_poverty_level(lst: list[CountyDemographics]) -> float:
     return float(total)
 
 # Part 4
+# functions will find the percent population per some parameter of the entire 2014 population.
+# input list output float
+# function will take the population of some parameter and dive it by the total population of the counties.
+# this will then be converted into a percentage and returned.
+
 def percent_by_education(lst:list[CountyDemographics], value:str) -> float:
     total = population_total(lst)
     return (population_by_education(lst, value) / total) * 100
@@ -75,7 +80,27 @@ def percent_below_poverty_level(lst:list[CountyDemographics]) -> float:
     return (population_below_poverty_level(lst) / total) * 100
 
 
-
-
-
 # Part 5
+def education_greater_than(lst:list[CountyDemographics], value:str, limit:int) -> list[CountyDemographics]:
+    final_list = []
+    if value == "":
+        return []
+    else:
+        for county in lst:
+            if county.education[value] > limit:
+                final_list.append(county)
+            else:
+                continue
+        return final_list
+
+def education_less_than(lst:list[CountyDemographics], value:str, limit:int) -> list[CountyDemographics]:
+    final_list = []
+    if value == "":
+        return []
+    else:
+        for county in lst:
+            if county.education[value] < limit:
+                final_list.append(county)
+            else:
+                continue
+        return final_list

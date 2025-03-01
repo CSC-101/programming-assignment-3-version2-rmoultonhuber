@@ -5,7 +5,7 @@ import build_data
 import unittest
 
 from hw3 import population_total, population_by_education, population_by_ethnicity, population_below_poverty_level, \
-    percent_by_education, percent_by_ethnicity, percent_below_poverty_level
+    percent_by_education, percent_by_ethnicity, percent_below_poverty_level, education_greater_than, education_less_than
 from hw3 import filter_by_state
 
 # These two values are defined to support testing below. The
@@ -304,10 +304,60 @@ class TestCases(unittest.TestCase):
 
     # Part 5
     # test education_greater_than
+    def test_education_greater_than1(self):
+        inpt = reduced_data
+        value = "Bachelor's Degree or Higher"
+        limit = 30
+        expected = [reduced_data[2], reduced_data[3]]
+        result = education_greater_than(inpt,value,limit)
+        self.assertEqual(expected,result)
+
+    def test_education_greater_than2(self):
+        inpt = reduced_data
+        value = "Bachelor's Degree or Higher"
+        limit = 90
+        expected = []
+        result = education_greater_than(inpt, value, limit)
+        self.assertEqual(expected, result)
+
+    def test_education_greater_than3(self):
+        inpt = reduced_data
+        value = ''
+        limit = 10
+        expected = []
+        result = education_greater_than(inpt, value, limit)
+        self.assertEqual(expected, result)
+
     # test education_less_than
+    def test_education_less_than1(self):
+        inpt = reduced_data
+        value = "Bachelor's Degree or Higher"
+        limit = 30
+        expected = [reduced_data[0], reduced_data[1],reduced_data[4],reduced_data[5],reduced_data[6]]
+        result = education_less_than(inpt,value,limit)
+        self.assertEqual(expected,result)
+
+    def test_education_less_than2(self):
+        inpt = reduced_data
+        value = "Bachelor's Degree or Higher"
+        limit = 10
+        expected = []
+        result = education_less_than(inpt, value, limit)
+        self.assertEqual(expected, result)
+
+    def test_education_less_than3(self):
+        inpt = reduced_data
+        value = ''
+        limit = 10
+        expected = []
+        result = education_less_than(inpt, value, limit)
+        self.assertEqual(expected, result)
     # test ethnicity_greater_than
+
     # test ethnicity_less_than
+
     # test below_poverty_level_greater_than
+
     # test below_poverty_level_less_than
 
 
