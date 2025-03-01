@@ -30,4 +30,31 @@ def filter_by_state(lst:list[CountyDemographics], state:str) -> list[CountyDemog
             continue
     return final_list
 
+# Part 3
+# functions will find the population per some parameter.
+# input list output float
+# functino will take the population of the county and multiply it by the percent of people that fit the value parameter
+# this will then return the total population as a float for that parameter.
 
+def population_by_education(lst:list[CountyDemographics], value:str)-> float:
+    total = 0
+    for county in lst:
+        if value in county.education:
+            total = total + (county.population.get('2014 Population') * county.education.get(value)/100)
+
+    return float(total)
+
+def population_by_ethnicity(lst: list[CountyDemographics], value: str) -> float:
+    total = 0
+    for county in lst:
+        if value in county.ethnicities:
+            total = total + (county.population.get('2014 Population') * county.ethnicities.get(value) / 100)
+
+    return float(total)
+
+def population_below_poverty_level(lst: list[CountyDemographics]) -> float:
+    total = 0
+    for county in lst:
+        total = total + (county.population.get('2014 Population') * county.income.get('Persons Below Poverty Level') / 100)
+
+    return float(total)
